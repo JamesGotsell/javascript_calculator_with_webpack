@@ -1,0 +1,48 @@
+{
+  "name": "snzygy_tech_test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack",
+    "test": "./node_modules/.bin/_mocha test/*.js",
+    "compile": "babel --presets es2015,stage-0 -d lib/ src/",
+    "test_two": "npm run compile && mocha test/*.js --compilers js:babel-core/register --require babel-polyfill -r jsdom-global/register"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-core": "^6.14.0",
+    "babel-loader": "^6.2.5",
+    "babel-plugin-transform-runtime": "^6.9.0",
+    "babel-polyfill": "^6.9.1",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1",
+    "babel-register": "^6.9.0",
+    "chai": "^3.5.0",
+    "css-loader": "^0.23.1",
+    "jasmine-es6": "^0.1.10",
+    "jsdom": "9.5.0",
+    "jsdom-global": "2.1.0",
+    "jshint": "^2.9.3",
+    "jshint-loader": "^0.8.3",
+    "mocha": "^3.1.0",
+    "node-libs-browser": "^1.0.0",
+    "node-sass": "^3.8.0",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.12.1"
+  },
+  "dependencies": {
+    "babel-loader": "^6.2.5",
+    "babel-preset-es2015": "^6.14.0",
+    "babel-preset-react": "^6.11.1"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  }
+}
