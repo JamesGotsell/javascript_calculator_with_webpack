@@ -65,7 +65,7 @@
 
 	6) i need click event on data display to put maths into the display -done  
 
-	7) css and media queries for desktop , tablet and mobile 
+	7) css and media queries for desktop , tablet and mobile  done
 
 	*/
 	var inputs = document.getElementsByTagName("input");
@@ -84,21 +84,21 @@
 	  inputs[i].addEventListener("click", run);
 	}
 
-	function add(firstNum, secondNum) {
+	var add = function add(firstNum, secondNum) {
 	  return parseFloat(firstNum) + parseFloat(secondNum);
-	}
+	};
 
-	function subtract(firstNum, secondNum) {
+	var subtract = function subtract(firstNum, secondNum) {
 	  return parseFloat(firstNum) - parseFloat(secondNum);
-	}
+	};
 
-	function multiply(firstNum, secondNum) {
+	var multiply = function multiply(firstNum, secondNum) {
 	  return parseFloat(firstNum) * parseFloat(secondNum);
-	}
+	};
 
-	function divide(firstNum, secondNum) {
+	var divide = function divide(firstNum, secondNum) {
 	  return parseFloat(firstNum) / parseFloat(secondNum);
-	}
+	};
 
 	function calculate(firstNum, secondNum, operator) {
 	  switch (operator) {
@@ -113,81 +113,81 @@
 	  }
 	}
 
-	function firstNumberEmpty(firstNum) {
+	var firstNumberEmpty = function firstNumberEmpty(firstNum) {
 	  return firstNum === "";
-	}
+	};
 
-	function secondNumberEmpty(secondNum) {
+	var secondNumberEmpty = function secondNumberEmpty(secondNum) {
 	  return secondNum === "";
-	}
+	};
 
-	function operatorEmpty(operator) {
+	var operatorEmpty = function operatorEmpty(operator) {
 	  return operator === null;
-	}
+	};
 
-	function anyOperator(btn) {
+	var anyOperator = function anyOperator(btn) {
 	  return btn === "-" || btn === "+" || btn === "/" || btn === "x";
-	}
+	};
 
-	function operatorExceptMinus(btn) {
+	var operatorExceptMinus = function operatorExceptMinus(btn) {
 	  return btn === "+" || btn === "/" || btn === "x";
-	}
+	};
 
-	function equals(btn) {
+	var equals = function equals(btn) {
 	  return btn === "=";
-	}
+	};
 
-	function decimal(btn) {
+	var decimal = function decimal(btn) {
 	  return btn === ".";
-	}
+	};
 
-	function negativeNumber(firstNum, secondNum) {
+	var negativeNumber = function negativeNumber(firstNum, secondNum) {
 	  return firstNum === "-" || secondNum === "-";
-	}
+	};
 
-	function blank(firstNum, secondNum, operator) {
+	var blank = function blank(firstNum, secondNum, operator) {
 	  return firstNumberEmpty(firstNum) && secondNumberEmpty(secondNum) && operatorEmpty(operator);
-	}
+	};
 
-	function complete(firstNum, secondNum, operator) {
+	var complete = function complete(firstNum, secondNum, operator) {
 	  return !firstNumberEmpty(firstNum) && !secondNumberEmpty(secondNum) && !operatorEmpty(operator);
-	}
+	};
 
-	function clearForm(btn, firstNum, secondNum, operator) {
+	var clearForm = function clearForm(btn, firstNum, secondNum, operator) {
 	  return btn == "c" || equals(btn) && blank(firstNum, secondNum, operator) || equals(btn) && (secondNumberEmpty(secondNum) || operatorEmpty(operator));
-	}
+	};
 
-	function readyToCalculate(btn, firstNum, secondNum, operator) {
+	var readyToCalculate = function readyToCalculate(btn, firstNum, secondNum, operator) {
 	  return equals(btn) && complete(firstNum, secondNum, operator);
-	}
+	};
 
-	function operatorAfterMinus(btn, firstNum, secondNum) {
+	var operatorAfterMinus = function operatorAfterMinus(btn, firstNum, secondNum) {
 	  return negativeNumber(firstNum, secondNum) && anyOperator(btn);
-	}
+	};
 
-	function allowChainingOperations(btn, firstNum, secondNum, operator) {
+	var allowChainingOperations = function allowChainingOperations(btn, firstNum, secondNum, operator) {
 	  return anyOperator(btn) && !firstNumberEmpty(firstNum) && !secondNumberEmpty(secondNum);
-	}
+	};
 
-	function operatorAfterOperator(btn, firstNum, secondNum, operator) {
+	var operatorAfterOperator = function operatorAfterOperator(btn, firstNum, secondNum, operator) {
 	  return operatorExceptMinus(btn) && !secondNumberEmpty(secondNum) && !operatorEmpty(operator);
-	}
+	};
 
-	function allowNegativeFirstNumber(btn, firstNum) {
+	var allowNegativeFirstNumber = function allowNegativeFirstNumber(btn, firstNum) {
 	  return btn === "-" && firstNumberEmpty(firstNum);
-	}
+	};
 
-	function allowNegativeSecondNumber(btn, operator, secondNum) {
+	var allowNegativeSecondNumber = function allowNegativeSecondNumber(btn, operator, secondNum) {
 	  return btn === "-" && !operatorEmpty(operator) && secondNumberEmpty(secondNum);
-	}
+	};
 
-	function setFirstNumber(operator) {
+	var setFirstNumber = function setFirstNumber(operator) {
 	  return operatorEmpty(operator);
-	}
+	};
 
-	function setSecondNumber(firstNum, operator) {
+	var setSecondNumber = function setSecondNumber(firstNum, operator) {
 	  return !firstNumberEmpty(firstNum) && !operatorEmpty(operator);
-	}
+	};
 
 	// the value doesn't clear after calculation
 	function run() {
@@ -237,6 +237,8 @@
 	  }
 	}
 
+	/// 
+
 	$('#saveResults').on('click', function () {
 	  //alert('clicked!');
 	  saveResult();
@@ -258,7 +260,7 @@
 	  function addToDom(object) {
 	    var str = "";
 	    for (var p in object) {
-	      str += '<div><p>' + p + ':' + " " + object[p].date + '</p></div>';
+	      str += '<div><p>' + p + ': ' + object[p].date + '</p></div>';
 	    }
 	    return str;
 	  }

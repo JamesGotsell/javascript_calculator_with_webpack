@@ -34,23 +34,15 @@ for( let i=0; i<inputs.length; i++ ) {
   inputs[i].addEventListener("click", run);  
 }
 
-function add(firstNum, secondNum) {
-  return parseFloat(firstNum) + parseFloat(secondNum)  
-}
+const add = (firstNum, secondNum) => parseFloat(firstNum) + parseFloat(secondNum)  
 
-function subtract(firstNum, secondNum){
- return parseFloat(firstNum) - parseFloat(secondNum)
-}
+const subtract = (firstNum, secondNum) => parseFloat(firstNum) - parseFloat(secondNum)
 
-function multiply(firstNum, secondNum){
-  return parseFloat(firstNum) * parseFloat(secondNum)
-}
+const multiply = (firstNum, secondNum) => parseFloat(firstNum) * parseFloat(secondNum)
 
-function divide( firstNum , secondNum){
-  return parseFloat(firstNum) / parseFloat(secondNum)
-}
+const divide = ( firstNum , secondNum) => parseFloat(firstNum) / parseFloat(secondNum)
 
-function calculate(firstNum, secondNum, operator) {
+function calculate(firstNum, secondNum, operator){
   switch (operator) {
     case "+":
       return add(firstNum, secondNum);
@@ -63,82 +55,62 @@ function calculate(firstNum, secondNum, operator) {
   }
 }
 
-function firstNumberEmpty(firstNum) {
-  return firstNum === "";
-}
-
-function secondNumberEmpty(secondNum) {
-  return secondNum === "";
-}
-
-function operatorEmpty(operator) {
-  return operator === null;
-}
-
-function anyOperator(btn) {
-  return btn === "-" || btn === "+" || btn === "/" || btn === "x";
-}
-
-function operatorExceptMinus(btn) {
-  return btn === "+" || btn === "/" || btn === "x";
-}
-
-function equals(btn) {
-  return btn === "=";
-}
-
-function decimal(btn){
-  return btn === ".";
-}
+const firstNumberEmpty = (firstNum) => firstNum === "";
 
 
-function negativeNumber(firstNum, secondNum) {
-  return firstNum === "-" || secondNum === "-";
-}
+const secondNumberEmpty = (secondNum) => secondNum === "";
 
-function blank(firstNum, secondNum, operator) {
-  return firstNumberEmpty(firstNum) && secondNumberEmpty(secondNum) && operatorEmpty(operator);
-}
 
-function complete(firstNum, secondNum, operator) {
-  return !firstNumberEmpty(firstNum) && !secondNumberEmpty(secondNum) && !operatorEmpty(operator);
-}
+const operatorEmpty = (operator)  => operator === null;
 
-function clearForm(btn, firstNum, secondNum, operator) {
-  return btn == "c" || (equals(btn) && blank(firstNum, secondNum, operator)) || (equals(btn) && (secondNumberEmpty(secondNum) || operatorEmpty(operator)));
-}
 
-function readyToCalculate(btn, firstNum, secondNum, operator) {
-  return equals(btn) && complete(firstNum, secondNum, operator);
-}
+const anyOperator = (btn) => btn === "-" || btn === "+" || btn === "/" || btn === "x";
 
-function operatorAfterMinus(btn, firstNum, secondNum) {
-  return negativeNumber(firstNum, secondNum) && anyOperator(btn);
-}
 
-function allowChainingOperations(btn, firstNum, secondNum, operator) {
-  return anyOperator(btn) && !firstNumberEmpty(firstNum) && !secondNumberEmpty(secondNum);
-}
+const operatorExceptMinus = (btn) => btn === "+" || btn === "/" || btn === "x";
 
-function operatorAfterOperator(btn, firstNum, secondNum, operator) {
-  return operatorExceptMinus(btn) && !secondNumberEmpty(secondNum) && !operatorEmpty(operator);
-}
 
-function allowNegativeFirstNumber(btn, firstNum) {
-  return btn === "-" && firstNumberEmpty(firstNum);
-}
+const equals = (btn) => btn === "=";
 
-function allowNegativeSecondNumber(btn, operator, secondNum) {
-  return btn === "-" && !operatorEmpty(operator) && secondNumberEmpty(secondNum);
-}
 
-function setFirstNumber(operator) {
-  return operatorEmpty(operator);
-}
+const decimal = (btn) => btn === ".";
 
-function setSecondNumber(firstNum, operator) {
-  return !firstNumberEmpty(firstNum) && !operatorEmpty(operator);
-}
+
+
+const negativeNumber = (firstNum, secondNum) => firstNum === "-" || secondNum === "-";
+
+
+const blank = (firstNum, secondNum, operator) => firstNumberEmpty(firstNum) && secondNumberEmpty(secondNum) && operatorEmpty(operator);
+
+
+const complete = (firstNum, secondNum, operator) => !firstNumberEmpty(firstNum) && !secondNumberEmpty(secondNum) && !operatorEmpty(operator);
+
+
+const clearForm = (btn, firstNum, secondNum, operator) => btn == "c" || (equals(btn) && blank(firstNum, secondNum, operator)) || (equals(btn) && (secondNumberEmpty(secondNum) || operatorEmpty(operator)));
+
+
+const readyToCalculate = (btn, firstNum, secondNum, operator) => equals(btn) && complete(firstNum, secondNum, operator);
+
+
+const operatorAfterMinus = (btn, firstNum, secondNum) => negativeNumber(firstNum, secondNum) && anyOperator(btn);
+
+
+const allowChainingOperations = (btn, firstNum, secondNum, operator) => anyOperator(btn) && !firstNumberEmpty(firstNum) && !secondNumberEmpty(secondNum);
+
+
+const operatorAfterOperator = (btn, firstNum, secondNum, operator) => operatorExceptMinus(btn) && !secondNumberEmpty(secondNum) && !operatorEmpty(operator);
+
+
+const allowNegativeFirstNumber = (btn, firstNum) => btn === "-" && firstNumberEmpty(firstNum);
+
+
+const allowNegativeSecondNumber = (btn, operator, secondNum) => btn === "-" && !operatorEmpty(operator) && secondNumberEmpty(secondNum);
+
+
+const setFirstNumber = (operator) => operatorEmpty(operator);
+
+
+const setSecondNumber = (firstNum, operator) => !firstNumberEmpty(firstNum) && !operatorEmpty(operator);
 
 // the value doesn't clear after calculation
 function run(){
@@ -198,6 +170,8 @@ function run(){
   }
 }
 
+/// remove jquery - use vanilla .on() could become .addEventListener
+
 $('#saveResults').on('click', function() {
   //alert('clicked!');
   saveResult()
@@ -219,7 +193,7 @@ function saveResult(){
   function addToDom(object){
     var str =""
      for (var p in object){
-        str +='<div><p>' +  p + ':' + " " + object[p].date+'</p></div>'
+        str += `<div><p>${p}: ${object[p].date}</p></div>`;
      }
      return str;
   }
